@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 export(int) var MAX_SPEED = 75 * 60
 
 export(int) var ACCELERATION = 10 * 60
