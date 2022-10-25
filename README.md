@@ -1,4 +1,4 @@
-# Action RPG
+# Pixel Platformer
 
 Run through of this tutorial from HeartBeast:
 
