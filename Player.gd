@@ -92,7 +92,7 @@ func apply_movement(movement, delta):
 
 func set_sprite_direction(movement):
 	if not close_to_zero(movement):
-		$AnimatedSprite.flip_h = movement > 0	
+		$AnimatedSprite.flip_h = movement > 0
 
 func apply_gravity(v, delta):
 	return min(v.y + GRAVITY * delta, MAX_GRAVITY * delta)
