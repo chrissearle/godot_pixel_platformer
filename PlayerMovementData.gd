@@ -13,3 +13,4 @@ export(int) var JUMP_FORCE = 160 * 60
 export(int) var JUMP_RELEASE_FORCE = 40 * 60
 export(int) var FAST_FALL_GRAVITY = 2 * 60
 
+export(int) var CLIMB_RATE = 50 * 60

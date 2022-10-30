@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-moveData = ExtResource( 3 )
+move_data = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
@@ -26,3 +26,10 @@ shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+
+[node name="LadderCheck" type="RayCast2D" parent="."]
+position = Vector2( 0, -4 )
+enabled = true
+cast_to = Vector2( 0, 15 )
+collide_with_areas = true
+collide_with_bodies = false
