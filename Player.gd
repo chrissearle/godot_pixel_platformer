@@ -2,16 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
-export(int) var MAX_SPEED = 75 * 60
-
-export(int) var ACCELERATION = 10 * 60
-export(int) var FRICTION = 10 * 60
-export(int) var GRAVITY = 5 * 60
-export(int) var MAX_GRAVITY = 300 * 60
-
-export(int) var JUMP_FORCE = 160 * 60
-export(int) var JUMP_RELEASE_FORCE = 40 * 60
-export(int) var FAST_FALL_GRAVITY = 2 * 60
+export(Resource) var moveData
 
 var velocity = Vector2.ZERO
 
@@ -57,15 +48,15 @@ func apply_jump(v, delta):
 
 	if is_on_floor():
 		if Input.is_action_pressed("ui_up"):
-			amount = -JUMP_FORCE * delta
+			amount = -moveData.JUMP_FORCE * delta
 	else:
 		# Close to apex
-		if Input.is_action_just_released("ui_up") and velocity.y < -(JUMP_RELEASE_FORCE * delta):
-			amount = -JUMP_RELEASE_FORCE * delta
+		if Input.is_action_just_released("ui_up") and velocity.y < -(moveData.JUMP_RELEASE_FORCE * delta):
+			amount = -moveData.JUMP_RELEASE_FORCE * delta
 
 		# Falling - increase gravity a little
 		if velocity.y > 0:
-			amount += FAST_FALL_GRAVITY * delta
+			amount += moveData.FAST_FALL_GRAVITY * delta
 
 	return amount
 	
@@ -95,14 +86,14 @@ func set_sprite_direction(movement):
 		$AnimatedSprite.flip_h = movement > 0
 
 func apply_gravity(v, delta):
-	return min(v.y + GRAVITY * delta, MAX_GRAVITY * delta)
+	return min(v.y + moveData.GRAVITY * delta, moveData.MAX_GRAVITY * delta)
 	
 
 func apply_friction(v, delta):
-	return move_toward(v.x, 0, FRICTION * delta)
+	return move_toward(v.x, 0, moveData.FRICTION * delta)
 
 func apply_acceleration(v, amount, delta):
-	return move_toward(v.x, MAX_SPEED * amount * delta, ACCELERATION * delta)
+	return move_toward(v.x, moveData.MAX_SPEED * amount * delta, moveData.ACCELERATION * delta)
 
 const FLOAT_EPSILON = 0.00001
 
