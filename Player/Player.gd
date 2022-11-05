@@ -26,9 +26,9 @@ var coyote_jump = false
 func _ready():
 	randomize()
 	if bool(randi() % 2):
-		animated_sprite.frames = load("res://PlayerGreenSkin.tres")
+		animated_sprite.frames = load("res://Player/PlayerGreenSkin.tres")
 	else:
-		animated_sprite.frames = load("res://PlayerBlueSkin.tres")
+		animated_sprite.frames = load("res://Player/PlayerBlueSkin.tres")
 		
 	animated_sprite.playing = true
 
@@ -90,6 +90,10 @@ func climb_state(input, delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	animated_sprite.animation = get_animation(input)
+
+func player_die():
+	SoundPlayer.play_sound(SoundPlayer.HURT)
+	get_tree().reload_current_scene()
 
 func is_on_ladder():
 	if not ladder_check.is_colliding():
@@ -191,6 +195,7 @@ func wants_to_jump():
 	
 func perform_jump(delta):
 	buffered_jump = false
+	SoundPlayer.play_sound(SoundPlayer.JUMP)
 	return -move_data.JUMP_FORCE * delta
 
 func perform_buffer_jump():
