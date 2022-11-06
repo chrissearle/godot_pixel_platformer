@@ -50,7 +50,7 @@ func _physics_process(delta):
 
 
 func move_state(input, delta):
-	if is_on_ladder() and Input.is_action_pressed("ui_up"):
+	if is_on_ladder() and Input.is_action_just_pressed("ui_up"):
 		state = CLIMB
 
 	velocity.y = apply_gravity(velocity, delta)
